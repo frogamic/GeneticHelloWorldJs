@@ -1,0 +1,15 @@
+{
+  "name": "GeneticHelloWorldJs",
+  "version": "1.0.0",
+  "description": "Generates the text hello world using a genetic algorithm",
+  "main": "index.js",
+  "repository": "github.com/frogamic/GeneticHelloWorldJs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Dominic Shelton",
+  "license": "GPL-2.0",
+  "dependencies": {
+  }
+}
