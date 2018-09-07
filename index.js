@@ -4,9 +4,7 @@ const BREED_RATE = 0.75;
 const POPULATION_SIZE = 1000;
 const TARGET = 'Hello, World';
 
-const generateCharacter = () => {
-    return String.fromCharCode(Math.floor(Math.random() * 94) + 32);
-}
+const generateCharacter = () => String.fromCharCode(Math.floor(Math.random() * 94) + 32);
 
 const selectParent = (elders, totalScore) => {
     let selection = Math.random() * totalScore;
@@ -17,7 +15,7 @@ const selectParent = (elders, totalScore) => {
             return e;
         }
     }
-}
+};
 
 const generatePopulation = () => {
     let p = [];
@@ -29,7 +27,7 @@ const generatePopulation = () => {
         p.push(x);
     }
     return p;
-}
+};
 
 const checkFitness = (x) => {
     let r = {value: x, score: 0};
@@ -39,7 +37,7 @@ const checkFitness = (x) => {
         }
     }
     return r;
-}
+};
 
 const breed = (p1, p2) => {
     let c = '';
@@ -55,7 +53,7 @@ const breed = (p1, p2) => {
         }
     }
     return c;
-}
+};
 
 let population = generatePopulation();
 let generation = 0;
@@ -67,11 +65,11 @@ console.log(`${MUTATE_RATE * 100}% chance of mutation for each chromosome.`);
 do {
     generation += 1;
 
-    let results = population.map(checkFitness).sort((x, y) => {return y.score - x.score;});
+    let results = population.map(checkFitness).sort((x, y) => y.score - x.score);
     if (results[0].value !== TARGET) {
         let elders = results.slice(0, POPULATION_SIZE * (1 - BREED_RATE));
         population = elders.map(x => x.value);
-        let totalScore = elders.reduce((a, x) => {return a + x.score;}, 0);
+        let totalScore = elders.reduce((a, x) => a + x.score, 0);
         for (let i = 0; i < POPULATION_SIZE * BREED_RATE; ++i) {
             population.push(breed(selectParent(elders, totalScore).value, selectParent(elders, totalScore).value));
         }
@@ -80,4 +78,4 @@ do {
     }
 
     console.log(`Generation ${generation}: '${results[0].value}', score: ${results[0].score}`);
-} while (population[0] !== TARGET)
+} while (population[0] !== TARGET);
